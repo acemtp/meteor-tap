@@ -1,0 +1,26 @@
+<head>
+  <title>tap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+</head>
+
+<body>
+  {{> taps}}
+</body>
+
+<template name="taps">
+  <div class="taps">
+    <h1>tap tap</h1>
+    {{> loginButtons}}
+    <br><br>
+    {{#each taps}}
+      <img src="{{userpic}}"/>
+      <a href="http://twitter.com/{{username}}">@{{username}}</a>
+      -
+      {{tap}}
+      <br>
+    {{/each}}
+  </div>
+</template>
