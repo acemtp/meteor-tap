@@ -28,6 +28,16 @@ if (Meteor.isClient) {
     var u = Meteor.users.findOne(this._id);
     if(u) return u.services.twitter.profile_image_url;
   };
+
+  Template.taps.userlang = function () {
+    var u = Meteor.users.findOne(this._id);
+    if(u) return u.services.twitter.lang;
+    else return "fr";
+  };
+
+  Template.taps.totalusers = function () {
+    return Meteor.users.find().count();
+  }
 }
 
 Meteor.methods({
@@ -42,7 +52,7 @@ Meteor.methods({
 
 if (Meteor.isServer) {
   Meteor.publish('allUsers', function () {
-    return Meteor.users.find({}, {fields: {'services.twitter.screenName': 1, 'services.twitter.profile_image_url': 1}});
+    return Meteor.users.find({}, {fields: {'services.twitter.screenName': 1, 'services.twitter.profile_image_url': 1, 'services.twitter.lang': 1}});
   });
 
   Meteor.publish('taps', function () {

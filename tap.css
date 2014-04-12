@@ -7,3 +7,7 @@
   text-align: center;
   -webkit-user-select: none;
 }
+
+.taps ul li {
+	list-style: none;
+}
