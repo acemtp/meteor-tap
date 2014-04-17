@@ -19,13 +19,13 @@ $ meteor
 JS: Taps = new Meteor.Collection('taps');
 ```
 
-* catch click events on tabs div
+* create tabs div
 
 ```
 HTML: <div class="tabs">
 ```
 
-* catch all the screen
+* make the div take all the screen so we catch all the click events
 
 ```
 CSS:
@@ -40,13 +40,22 @@ CSS:
   }
 ```
 
-* call method
+* catch click and double click events on the div
+
+```
+  Template.taps.events({
+    'dblclick .taps, click .taps': function () {
+    }
+  });
+```
+
+* call remote method
 
 ```
 JS: Meteor.call('tap');
 ```
 
-* create method
+* create method (lag compensation, ...)
 
 ```
 JS:
@@ -61,13 +70,13 @@ JS:
   });
 ```
 
-* display in console that taps collection change when we click
+* display in console that taps collection changes when we click
 
 ```
 BROWSER CONSOLE: Taps.findOne();
 ```
 
-* display the content of the collection, auto sort by tap
+* display the content of the collection, sort by tap (auto sort)
 
 ```
 HTML:
@@ -83,7 +92,7 @@ JS:
   };
 ```
 
-* add meta for mobile (blocking resize)
+* add meta for mobile (no scale, device width)
 
 ```
 HTML:
@@ -91,7 +100,7 @@ HTML:
   <meta name="apple-mobile-web-app-capable" content="yes" />
 ```
 
-* add simple client js lib
+* add simple client js lib to handle clicks correctly and quickly on mobile
 
 ```
 $ mkdir -p client/compatibility
@@ -108,9 +117,9 @@ JS: Meteor.startup(function () { FastClick.attach(document.body); });
 $ meteor deploy tap
 ```
 
-* let's user play http://tap.meteor.com
+* let's users play http://tap.meteor.com
 
-* add twitte auth
+* add twitter auth
 
 ```
 $ meteor add accounts-twitter
@@ -121,13 +130,13 @@ $ meteor add accounts-ui
 HTML: {{> loginButtons}}<br>
 ```
 
-* use userId
+* use userId to differentiate users
 
 ```
 JS: var id = this.userId || "0";
 ```
 
-* display username and lang
+* display user name and lang
 
 ```
 HTML: <a href="http://twitter.com/{{username}}">@{{username}}</a> - {{tap}}<br>
@@ -147,7 +156,7 @@ JS:
   };
 ```
 
-* display pic
+* display user pic
 
 ```
 HTML: <img src="{{userpic}}"> <a href="http://twitter.com/{{username}}">@{{username}}</a> - {{tap}}<br>
@@ -161,7 +170,7 @@ JS:
   };
 ```
 
-* display nb users
+* display user count
 
 ```
 HTML: {{totalusers}} users have been logged<br>
@@ -194,7 +203,7 @@ JS (server):
 JS: Meteor.subscribe('taps');
 ```
 
-* pub/sub all users, only needed fields
+* pub/sub all users but only mandatory fields
 
 ```
 JS (server):
@@ -211,7 +220,7 @@ JS (server):
 JS: Meteor.subscribe('allUsers');
 ```
 
-* cool layout
+* cool layout (optional)
 
 ```
 $ cp ../tapPlus.css .
@@ -223,3 +232,5 @@ $ cp ../tap.html .
 ```
 $ meteor deploy tap
 ```
+
+* let's users play http://tap.meteor.com
