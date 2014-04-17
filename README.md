@@ -3,7 +3,7 @@ meteor-tap
 
 tap tap made with meteor for devoxx 2014 conference live coding.
 
-Here is the step by step live conding
+Here is the instruction to recode the live coding.
 
 * create app
 
